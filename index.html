@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأخبار الحصرية لعالم الكرتون</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6b800;
+            color: #000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #3c2f1d;
+            color: #fff;
+        }
+
+        header {
+            background-color: #e6b800;
+            color: #3c2f1d;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode header {
+            background-color: #3c2f1d;
+            color: #fff;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle, .trash-icon {
+            margin: 0 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .news-articles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        article {
+            background-color: #e6b800;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: calc(100% - 60px);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        body.dark-mode article {
+            background-color: #3c2f1d;
+            color: #fff;
+        }
+
+        article:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        article img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        article h2 {
+            font-size: 1.8em;
+            margin: 20px 0 10px 0;
+            color: inherit;
+            text-align: center;
+        }
+
+        article p {
+            font-size: 1em;
+            margin: 10px 20px 20px 20px;
+            color: inherit;
+            text-align: center;
+        }
+
+        article button {
+            display: block;
+            background-color: #1e1e2d;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        body.dark-mode article button {
+            background-color: #4a3b2a;
+        }
+
+        article button:hover {
+            background-color: #333;
+        }
+
+        .hide-button {
+            background-color: #ff4d4d;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .modal-content.dark-mode {
+            background-color: #3c2f1d;
+            color: #fff;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            margin-top: 0;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #1e1e2d;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            article {
+                width: calc(100% - 30px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            article {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="icons">
+         
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أيقونة مساعدة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* تصميم النافذة المنبثقة */
+        #helpPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .popup-content {
+            position: relative;
+            background-color: #e6b800;
+            padding: 20px;
+            margin: auto;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #333;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .fas.fa-question-circle {
+            font-size: 24px;
+            cursor: pointer;
+            color: #8B0000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- أيقونة المساعدة -->
+    <i class="fas fa-question-circle" onclick="showHelp()"></i>
+
+    <!-- النافذة المنبثقة للمساعدة -->
+    <div id="helpPopup">
+        <div class="popup-content">
+            <span class="close" onclick="closeHelp()">&times;</span>
+            <p>جميع الأخبار التي نقدمها تستند إلى مصادر موثوقة ومعتمدة لضمان تقديم معلومات دقيقة وموثوقة لقرائنا. نحن نلتزم بالتحقق من صحة الأخبار من خلال مصادر متعددة قبل نشرها. نحرص على الحفاظ على النزاهة والشفافية في تقديم المعلومات، ونلتزم بأعلى المعايير الصحفية لضمان أن تكون الأخبار التي تصل إليك موثوقة، واضحة، وخالية من التضليل</p>
+        </div>
+    </div>
+
+    <script>
+        // عرض النافذة المنبثقة
+        function showHelp() {
+            document.getElementById("helpPopup").style.display = "block";
+        }
+
+        // إغلاق النافذة المنبثقة
+        function closeHelp() {
+            document.getElementById("helpPopup").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
+         
+            <i class="fas fa-adjust theme-toggle" onclick="toggleTheme()"></i>
+            
+       <i class="fas fa-eye-slash hidden-icon" onclick="showHiddenArticles()"></i>
+  
+<style>
+.hidden-icon {
+    font-size: 23px; /* يمكنك تعديل الحجم حسب الحاجة */
+    transform: rotate(3deg); /* يمكنك تعديل الميلان حسب الحاجة */
+    margin-left: 2px; /* يمكنك تعديل القيمة لتحريك الأيقونة إلى اليمين حسب الحاجة */
+}
+</style>
+        </div>
+    </header>
+    <main>
+      
+      
+      
+      
+      
+     <section class="news-articles">
+    <!-- المقالة الأولى -->
+    <article data-id="1">
+        <img src="https://s01.babup.com/uploads/maxresdefault-1-_9e201.jpg" alt="News Image">
+        <h2>الموسم السادس</h2>
+        <p>تغيير مثير في رسم شخصيات الموسم السادس من ميراكولوس يثير الحماس بتقنيات جديدة ستدهش الجمهور</p>
+        <button onclick="showModal('news-modal-1')">
+            <i class="fas fa-book-reader"></i> قراءة المزيد
+        </button>
+        <button class="hide-button" onclick="hideArticle(this)">
+            <i class="fas fa-eye-slash"></i> إخفاء
+        </button>
+    </article>
+
+    <!-- المقالة الثانية -->
+    <article data-id="2">
+        <img src="https://s01.babup.com/uploads/179650.jpeg" alt="News Image">
+        <h2>فيلم بن 10 القادم</h2>
+        <p>توم هولندا ينفي دوره كـ بن 10 ولكن هل هذا كل ما في الأمر؟ وراء هذه الإجابة البسيطة قد تكون هناك أسرار لم نكشفها بعد هل كان مجرد خدعة أم أن هناك خطة أكبر قيد التنفيذ؟ </p>
+        <button onclick="showModal('news-modal-2')">
+            <i class="fas fa-book-reader"></i> قراءة المزيد
+        </button>
+        <button class="hide-button" onclick="hideArticle(this)">
+            <i class="fas fa-eye-slash"></i> إخفاء
+        </button>
+    </article>
+</section>
+
+<!-- النافذة المنبثقة للمقالة الأولى -->
+<div id="news-modal-1" class="modal">
+    <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <h2>ميراكولوس الموسم السادس</h2>
+        <p>
+            
+أوضح الكاتب توماس أستروك أن التحول من برنامج الرسوم المتحركة "Maya" إلى محرك  "Unreal Engine" كان جزءًا من عملية تطوير الموسم السادس الجديد من مسلسل  ميراكولوس الذي سيُعرض قريبًا. جاء هذا القرار بسبب عدم توافق أصول الرسوميات الحاسوبية مع الإصدارات الأحدث من "Maya"، مما سبب مشاكل تقنية أعاقت سير العمل وأثرت على جودة الإنتاج. كانت هذه المشكلات تتعلق بصعوبة التعامل مع التحديثات المستمرة للبرنامج والتي أدت إلى تعقيدات غير متوقعة.
+بالمقابل، يوفر "Unreal Engine" بيئة أكثر استقرارًا وموثوقية في التعامل مع أصول الرسوميات الحاسوبية. بفضل قدرته على التكيف مع الأصول وتقديم أداء عالٍ على مدى فترة طويلة، أصبح "Unreal Engine" الخيار المثالي لمواكبة احتياجات مسلسل "ميراكولوس". بفضل هذا الانتقال، يعتقد أستروك أن "Unreal Engine" سيضمن دعم الأصول بنجاح لمدة تصل إلى عشر سنوات على الأقل. هذا سيمكن الفريق من العمل بكفاءة وثقة على الموسم الجديد دون الحاجة للقلق بشأن المشكلات التقنية المرتبطة بتحديثات البرمجيات، مما يساهم في تقديم جودة عالية وجديدة لجمهور المسلسل.
+
+
+        </p>
+    </div>
+</div>
+
+<!-- النافذة المنبثقة للمقالة الثانية -->
+<div id="news-modal-2" class="modal">
+    <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <h2>فيلم بن 10 القادم</h2>
+        <p>
+            
+مؤخرًا، ظهر منشور على وسائل التواصل الاجتماعي يتساءل فيه أحد المعجبين عن احتمالية رؤية توم هولاند يجسد شخصية بن 10 في فيلم قادم. وقد كانت الإجابة المختصرة والصريحة من هولاند "لا". هذه الإجابة أثارت موجة من الجدل بين المعجبين، الذين اعتبروا أن هذا يشير إلى رفض تام من هولاند لتجسيد الشخصية.
+ومع ذلك، يجب أن ننظر إلى هذا الأمر بحذر. فمن غير المستغرب أن يرفض ممثل دورًا معينًا بناءً على عدة عوامل، بما في ذلك الجدول الزمني، والتزامات أخرى، وحتى الرؤية الفنية الشخصية. وربما كانت إجابة هولاند بسيطة للتغلب على الشائعات أو للتأكيد على تركيزه الحالي على مشاريعه الحالية.
+على الرغم من ذلك، يجب أيضًا أن نأخذ في الاعتبار أن القرار النهائي بشأن تجسيد شخصية بن 10 في أي فيلم جديد يعتمد على قرارات المنتجين والمخرجين، وربما لا يكون لهولاند أي دور في هذا القرار.
+باختصار، فإن رفض توم هولاند  لا يعني بالضرورة أنه رفض تمثيل شخصية بن 10. قد يكون هذا الأمر مجرد تصريح بسيط، أو قد يكون له خلفية تتعلق بعوامل أخرى لا نعلم عنها بعد. لذلك، من المهم أن ننتظر التأكيد الرسمي من الجهات المعنية قبل أخذ أي استنتاجات نهائية حول مستقبل شخصية بن 10 في السينما
+
+
+        </p>
+    </div>
+</div>
+
+<script>
+    // لعرض النافذة المنبثقة
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
+
+    // لإغلاق النافذة المنبثقة
+    document.querySelectorAll('.close-modal').forEach(button => {
+        button.addEventListener('click', function() {
+            this.closest('.modal').style.display = 'none';
+        });
+    });
+
+    // لإخفاء المقالة
+    function hideArticle(button) {
+        button.closest('article').style.display = 'none';
+    }
+</script>
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        color: #000;
+        text-align: center;
+    }
+
+    .modal-content {
+        background: #e6b800;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 600px;
+        width: 90%;
+        position: relative;
+    }
+
+    .close-modal {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+
+    h2 {
+        margin: 20px 0;
+    }
+</style>
+
+
+
+
+
+
+      
+   
+       
+       
+    </main>
+    <footer>
+        <p>© 2024 آخر اخبار العروض والتحديثات</p>
+    </footer>
+
+    <div id="hiddenModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <h2 class="modal-title">العناصر المخفية</h2>
+            <div id="hiddenArticlesContent">
+                <p>  لا يوجد عناصر مخفية  </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            document.querySelector('.modal-content').classList.toggle('dark-mode', isDarkMode);
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.modal-content').classList.add('dark-mode');
+            }
+        }
+
+        function hideArticle(button) {
+            const article = button.parentElement;
+            const id = article.getAttribute('data-id');
+            article.style.display = 'none';
+
+            let hiddenArticles = JSON.parse(localStorage.getItem('hiddenArticles')) || [];
+            hiddenArticles.push(id);
+            localStorage.setItem('hiddenArticles', JSON.stringify(hiddenArticles));
+        }
+
+        function loadHiddenArticles() {
+            const hiddenArticles = JSON.parse(localStorage.getItem('hiddenArticles')) || [];
+            hiddenArticles.forEach(id => {
+                const article = document.querySelector(`article[data-id="${id}"]`);
+                if (article) {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        function showHiddenArticles() {
+            const hiddenArticles = JSON.parse(localStorage.getItem('hiddenArticles')) || [];
+            const content = document.getElementById('hiddenArticlesContent');
+            content.innerHTML = '';
+
+            if (hiddenArticles.length === 0) {
+                content.innerHTML = '<p>لا يوجد عنصر مخفي</p>';
+            } else {
+                hiddenArticles.forEach(id => {
+                    const article = document.querySelector(`article[data-id="${id}"]`);
+                    if (article) {
+                        const clone = article.cloneNode(true);
+                        clone.style.display = '';
+                        clone.querySelector('.hide-button').remove();
+
+                        const restoreButton = document.createElement('button');
+                        restoreButton.innerHTML = '<i class="fas fa-undo"></i> استعادة';
+                        restoreButton.onclick = () => restoreArticle(id);
+                        clone.appendChild(restoreButton);
+
+                        content.appendChild(clone);
+                    }
+                });
+            }
+
+            document.getElementById('hiddenModal').style.display = 'block';
+        }
+
+        function restoreArticle(id) {
+            let hiddenArticles = JSON.parse(localStorage.getItem('hiddenArticles')) || [];
+            hiddenArticles = hiddenArticles.filter(articleId => articleId !== id);
+            localStorage.setItem('hiddenArticles', JSON.stringify(hiddenArticles));
+
+            const article = document.querySelector(`article[data-id="${id}"]`);
+            if (article) {
+                article.style.display = '';
+            }
+
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('hiddenModal').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
+            loadHiddenArticles();
+        });
+    </script>
+        
+</body>
+</html>
